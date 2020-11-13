@@ -2,6 +2,12 @@
 
     <PropertyGroup>
         <TargetFramework>netstandard2.0</TargetFramework>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <Title>Blowin.Result</Title>
+        <Description>Result monad</Description>
+        <PackageProjectUrl>https://github.com/blowin/Blowin.Result</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/blowin/Blowin.Result</RepositoryUrl>
+        <RepositoryType>lib</RepositoryType>
     </PropertyGroup>
 
 </Project>
