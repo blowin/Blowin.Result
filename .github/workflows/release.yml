@@ -15,11 +15,12 @@ jobs:
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 3.1.301
-    - name: Create Nuget Package
-      run: dotnet pack -c Release /p:Version=${{ github.event.release.tag_name }} /p:PackageReleaseNotes="See https://github.com/blowin/Blowin.Result/releases/tag/${{ github.event.release.tag_name }}"
-      working-directory: ./blowin.Blowin.Result
-    - name: Archive Nuget Package
-      uses: actions/upload-artifact@v1
+    - name: Install dependencies
+      run: dotnet restore
+    - name: Build
+      run: dotnet build --configuration Release --no-restore
+    - name: Publish Blowin.Result
+      uses: brandedoutcast/publish-nuget@v2.5.2
       with:
-        name: blowin.Blowin.Result
-        path: ./blowin.Blowin.Result/blowin.Blowin.Result/bit/Release/blowin.Blowin.Result.${{ github.event.release.tag_name }}.nupkg"
+          PROJECT_FILE_PATH: src/Blowin.Result/Blowin.Result.csproj
+          NUGET_KEY: ${{secrets.nuget_api_key}}
