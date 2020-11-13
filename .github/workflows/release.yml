@@ -22,5 +22,5 @@ jobs:
     - name: Publish Blowin.Result
       uses: brandedoutcast/publish-nuget@v2.5.2
       with:
-          PROJECT_FILE_PATH: src/Blowin.Result/Blowin.Result.csproj
+          PROJECT_FILE_PATH: src/Blowin.Result/Blowin.Result/Blowin.Result.csproj
           NUGET_KEY: ${{secrets.nuget_api_key}}
