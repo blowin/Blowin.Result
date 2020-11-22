@@ -1,15 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 
 namespace Blowin.Result
 {
+    [Serializable, DataContract]
     public readonly struct Result : IEquatable<Result>
     {
+        [DataMember]
         public readonly Exception Error;
 
+        [IgnoreDataMember]
         public string FailMessage => Error?.Message;
         
+        [IgnoreDataMember]
         public bool IsFail => Error != null;
+        
+        [IgnoreDataMember]
         public bool IsOk => !IsFail;
 
         public Result(Exception error)
@@ -100,22 +107,28 @@ namespace Blowin.Result
         #endregion
     }
     
+    [Serializable, DataContract]
     public readonly struct Result<T> : IEquatable<Result<T>>
     {
         /// <summary>
         /// Результат если IsOk == True
         /// </summary>
+        [DataMember]
         public readonly T Value;
 
         /// <summary>
         /// Результат если IsFail == True
         /// </summary>
+        [DataMember]
         public readonly Exception Error;
 
+        [IgnoreDataMember]
         public bool IsOk => Error == null;
 
+        [IgnoreDataMember]
         public bool IsFail => !IsOk;
         
+        [IgnoreDataMember]
         public string FailMessage => Error?.Message;
 
         internal Result(T success, Exception failure)
@@ -204,20 +217,25 @@ namespace Blowin.Result
         public static bool operator !=(Result<T> left, Result<T> right) => !left.Equals(right);
     }
 
+    [Serializable, DataContract]
     public readonly struct Result<TSuccess, TFailure> : IEquatable<Result<TSuccess, TFailure>>
     {
         /// <summary>
         /// Результат если IsOk == True
         /// </summary>
+        [DataMember]
         public readonly TSuccess Value;
 
         /// <summary>
         /// Результат если IsOk == False
         /// </summary>
+        [DataMember]
         public readonly TFailure Error;
 
+        [DataMember]
         public readonly bool IsOk;
 
+        [IgnoreDataMember]
         public bool IsFail => !IsOk;
 
         internal Result(TSuccess success, TFailure error, bool isOk)
