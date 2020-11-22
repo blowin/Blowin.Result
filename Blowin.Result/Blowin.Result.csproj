@@ -8,6 +8,7 @@
         <PackageProjectUrl>https://github.com/blowin/Blowin.Result</PackageProjectUrl>
         <RepositoryUrl>https://github.com/blowin/Blowin.Result</RepositoryUrl>
         <RepositoryType>lib</RepositoryType>
+        <PackageVersion>1.0.1</PackageVersion>
     </PropertyGroup>
 
 </Project>
